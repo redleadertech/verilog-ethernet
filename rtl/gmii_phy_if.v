@@ -54,14 +54,14 @@ module gmii_phy_if #
      */
     output wire        mac_gmii_rx_clk,
     output wire        mac_gmii_rx_rst,
-    output wire [7:0]  mac_gmii_rxd,
-    output wire        mac_gmii_rx_dv,
-    output wire        mac_gmii_rx_er,
+    (* MARK_DEBUG = "true" *) output wire [7:0]  mac_gmii_rxd,
+    (* MARK_DEBUG = "true" *) output wire        mac_gmii_rx_dv,
+    (* MARK_DEBUG = "true" *) output wire        mac_gmii_rx_er,
     output wire        mac_gmii_tx_clk,
     output wire        mac_gmii_tx_rst,
-    input  wire [7:0]  mac_gmii_txd,
-    input  wire        mac_gmii_tx_en,
-    input  wire        mac_gmii_tx_er,
+    (* MARK_DEBUG = "true" *) input  wire [7:0]  mac_gmii_txd,
+    (* MARK_DEBUG = "true" *) input  wire        mac_gmii_tx_en,
+    (* MARK_DEBUG = "true" *) input  wire        mac_gmii_tx_er,
 
     /*
      * GMII interface to PHY
