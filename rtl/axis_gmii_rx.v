@@ -66,14 +66,14 @@ module axis_gmii_rx #
      * Control
      */
     input  wire                     clk_enable,
-    input  wire                     mii_select,
+    (* MARK_DEBUG = "true" *) input  wire                     mii_select,
 
     /*
      * Status
      */
-    output wire                     start_packet,
-    output wire                     error_bad_frame,
-    output wire                     error_bad_fcs
+    (* MARK_DEBUG = "true" *) output wire                     start_packet,
+    (* MARK_DEBUG = "true" *) output wire                     error_bad_frame,
+    (* MARK_DEBUG = "true" *) output wire                     error_bad_fcs
 );
 
 // bus width assertions
@@ -99,7 +99,7 @@ reg [2:0] state_reg = STATE_IDLE, state_next;
 reg reset_crc;
 reg update_crc;
 
-reg mii_odd = 1'b0;
+(* MARK_DEBUG = "true" *) reg mii_odd = 1'b0;
 reg mii_locked = 1'b0;
 
 reg [DATA_WIDTH-1:0] gmii_rxd_d0 = {DATA_WIDTH{1'b0}};
@@ -133,6 +133,8 @@ reg [PTP_TS_WIDTH-1:0] ptp_ts_reg = 0, ptp_ts_next;
 
 reg [31:0] crc_state = 32'hFFFFFFFF;
 wire [31:0] crc_next;
+(* MARK_DEBUG = "true" *) wire [31:0] expected_crc = ~crc_next;
+(* MARK_DEBUG = "true" *) wire [31:0] received_crc = {gmii_rxd_d0, gmii_rxd_d1, gmii_rxd_d2, gmii_rxd_d3};
 
 assign m_axis_tdata = m_axis_tdata_reg;
 assign m_axis_tvalid = m_axis_tvalid_reg;
